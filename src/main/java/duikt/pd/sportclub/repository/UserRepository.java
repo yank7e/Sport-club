@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByPhoneNumber(String phoneNumber);
     Optional<User> findByQrCodeId(String qrCodeId);
+    Optional<User> findByEmail(String email);
 }

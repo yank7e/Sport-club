@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${newsDto.id == null} ? 'Create News Post' : 'Edit News Post'">
+        News Form
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <h2 class="mb-4"
+                th:text="${newsDto.id == null} ? 'Create New Post' : 'Edit Post #' + ${newsDto.id}">
+                News Form
+            </h2>
+
+            <form th:object="${newsDto}"
+                  th:action="${newsDto.id == null} ? @{/admin/news/new} : @{/admin/news/edit/{id}(id=${newsDto.id})}"
+                  method="POST">
+
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text"
+                           class="form-control"
+                           id="title"
+                           th:field="*{title}"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content</label>
+                    <textarea class="form-control"
+                              id="content"
+                              rows="10"
+                              th:field="*{content}"
+                              required>
+                    </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Image URL</label>
+                    <input type="text"
+                           class="form-control"
+                           id="imageUrl"
+                           th:field="*{imageUrl}"
+                           placeholder="https://example.com/image.jpg">
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Save Post</button>
+                    <a th:href="@{/admin/news}" class="btn btn-secondary">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
