@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/**", "/css/**", "/js/**", "/").permitAll()
 
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/admin-panel/**").hasRole("ADMIN")
 
                         .requestMatchers("/profile").hasAnyRole("CLIENT", "ADMIN")
 

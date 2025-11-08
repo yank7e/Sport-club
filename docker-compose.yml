@@ -1,5 +1,3 @@
-# === ФІНАЛЬНИЙ, ПРАВИЛЬНИЙ docker-compose.yml ===
-
 services:
 
   db:
@@ -10,24 +8,22 @@ services:
     environment:
       POSTGRES_DB: gym_db
       POSTGRES_USER: gym_user
-      POSTGRES_PASSWORD: 1234  # <-- Пароль '1234'
+      POSTGRES_PASSWORD: 1234
     volumes:
       - gym-db-storage:/var/lib/postgresql/data
       - ./db-init/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  # Сервіс Додатку
   app:
     build: .
     container_name: gym-spring-app
     ports:
       - "8080:8080"
     environment:
-      # URL підключається до сервісу 'db'
       spring.datasource.url: jdbc:postgresql://db:5432/gym_db
       spring.datasource.username: gym_user
-      spring.datasource.password: 1234  # <-- Той самий пароль '1234'
+      spring.datasource.password: 1234
     depends_on:
-      - db  # <-- Залежить від сервісу 'db'
+      - db
 
 volumes:
   gym-db-storage:
