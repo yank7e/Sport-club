@@ -10,4 +10,5 @@ import java.util.List;
 public interface NewsRepository extends JpaRepository<News, Long> {
 
     List<News> findAllByOrderByCreatedAtDesc();
+    List<News> findFirst3ByOrderByCreatedAtDesc();
 }

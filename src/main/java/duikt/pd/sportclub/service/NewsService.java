@@ -14,4 +14,6 @@ public interface NewsService {
     List<News> findAllSorted();
 
     News findById(Long newsId);
+
+    List<News> findLatest3News();
 }

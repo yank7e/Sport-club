@@ -34,6 +34,8 @@ public class SecurityConfig {
 
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
+                        .requestMatchers("/profile").hasAnyRole("CLIENT", "ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

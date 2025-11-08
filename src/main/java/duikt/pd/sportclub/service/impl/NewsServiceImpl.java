@@ -63,4 +63,9 @@ public class NewsServiceImpl implements NewsService {
         return newsRepository.findById(newsId)
                 .orElseThrow(() -> new ResourceNotFoundException("News not found with id: " + newsId));
     }
+
+    @Override
+    public List<News> findLatest3News() {
+        return newsRepository.findFirst3ByOrderByCreatedAtDesc();
+    }
 }
